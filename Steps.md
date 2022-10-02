@@ -130,4 +130,13 @@ bookClubChannel.permissionOverwrites.create(interaction.guild.roles.cache.find(r
 - You need to allow your bot to have the scope of applications.commands in the discord portal. 
 - Kick your bot and re-add it with both the `bot` and `applications.commands` scopes added. 
 - You'll also have to re-register your slash commands with `node deploy-commands.js`
-- 
+
+## Delete Channel Command
+### deploy-commands.js
+- Register a new slash command
+```js
+new SlashCommandBuilder()
+		.setName('deletechannel')
+		.setDescription('Deletes the channel that the command is used in')
+		.setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
+```

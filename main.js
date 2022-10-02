@@ -10,7 +10,7 @@ const client = new Client({
 		GatewayIntentBits.GuildMessages, 
 		GatewayIntentBits.GuildMessageReactions,
 		GatewayIntentBits.MessageContent, 
-		GatewayIntentBits.DirectMessages
+		GatewayIntentBits.DirectMessages,
 	], 
 	partials: ['CHANNEL'] });
 
@@ -97,6 +97,36 @@ client.on('interactionCreate', async (interaction) => {
 		collector.on("end", collected => {
 			console.log(`Collected ${collected.size} out of ${numberOfPeople}`)
 		})
+	}
+
+	
+	else if (commandName === 'deletechannel') {
+
+		const userFilter = (user) => {
+			return user.id === interaction.user.id
+		}
+
+		await interaction.reply({content: 'What channel are you wanting to delete? Make sure to type the channel name exactly as it is spelled.'})
+
+		const interactionReply = await interaction.channel.awaitMessages({ userFilter, max: 1, time: 10000})
+
+		const channelToBeDeleted = interactionReply.first().content
+
+		await interaction.followUp({content: `Are you sure you want to delete the channel: ${channelToBeDeleted}?`})
+
+		const deleteChannelFollowup = await interaction.channel.awaitMessages({ userFilter, max: 1, time: 10000})
+
+		const followupMessage = deleteChannelFollowup.first().content
+
+		const fetchedChannel = client.channels.cache.find(channel => channel.name === channelToBeDeleted)
+		const fetchedRole = interaction.guild.roles.cache.find(r => r.name === channelToBeDeleted)
+
+		if (followupMessage === 'yes') {
+			fetchedChannel.delete('Book Club Finished')
+			fetchedRole.delete('Book Club Finished')
+		} else {
+			return
+		}
 	}
 });
 

@@ -140,4 +140,3 @@ new SlashCommandBuilder()
 		.setDescription('Deletes the channel that the command is used in')
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
 ```
-test

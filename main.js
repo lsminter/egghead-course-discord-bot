@@ -91,11 +91,13 @@ client.on('interactionCreate', async (interaction) => {
 		const collector = interaction.channel.createMessageComponentCollector({ filter, max: numberOfPeople, time: 20000});
 
 		collector.on("collect", i => {
-			console.log(`Collected ${customButton.components[0].data.emoji.name} from ${i.user.username}`)
-			const userById = interaction.guild.members.cache.get(i.user.id)
 			const bookClubRole = interaction.guild.roles.cache.find(r => r.name === book)
+			const userById = interaction.guild.members.cache.get(i.user.id)
+
 			userById.roles.add(bookClubRole.id)
+
 			i.reply({content: `${i.user.username} has been added to the book club!`})
+			console.log(`Collected ${customButton.components[0].data.emoji.name} from ${i.user.username}`)
 		})
 
 		collector.on("end", collected => {
@@ -109,6 +111,9 @@ client.on('interactionCreate', async (interaction) => {
 		const userFilter = (user) => {
 			return user.id === interaction.user.id
 		}
+		const userById = interaction.guild.members.cache.get(interaction.user.id)
+
+		console.log(userById.roles)
 
 		await interaction.reply({content: 'What channel are you wanting to delete? Make sure to type the channel name exactly as it is spelled.'})
 

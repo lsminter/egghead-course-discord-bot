@@ -1,6 +1,5 @@
 import { Client, GatewayIntentBits, PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js"
 import moment from 'moment';
-import {titleCase} from 'text-case'
 
 import dotenv from 'dotenv'
 import { titleCase } from "text-case";
@@ -66,7 +65,7 @@ client.on('interactionCreate', async (interaction) => {
 				},
 				{
 					name: 'Link on Wikipedia',
-					value: `https://en.wikipedia.org/wiki/${wikiLink.titleCase}`
+					value: `https://en.wikipedia.org/wiki/${titleCase(wikiLink)}`
 				}
 			]
 		}

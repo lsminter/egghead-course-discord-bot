@@ -53,7 +53,8 @@ client.on('interactionCreate', async (interaction) => {
 			);
 
 		const bookTitle = userBookReply.first().content
-		const wikiLink = bookTitle.replace(/\s+/g, '_');
+		const wikiLink = titleCase(bookTitle).replace(/\s+/g, '_');
+		console.log(wikiLink)
 
 		const embedBookClubMessage = {
 			title: book,
@@ -65,7 +66,7 @@ client.on('interactionCreate', async (interaction) => {
 				},
 				{
 					name: 'Link on Wikipedia',
-					value: `https://en.wikipedia.org/wiki/${titleCase(wikiLink)}`
+					value: `https://en.wikipedia.org/wiki/${wikiLink}`
 				}
 			]
 		}
@@ -116,8 +117,6 @@ client.on('interactionCreate', async (interaction) => {
 			return user.id === interaction.user.id
 		}
 		const userById = interaction.guild.members.cache.get(interaction.user.id)
-
-		console.log(userById.roles)
 
 		await interaction.reply({content: 'What channel are you wanting to delete? Make sure to type the channel name exactly as it is spelled.'})
 

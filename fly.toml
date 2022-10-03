@@ -1,4 +1,4 @@
-# fly.toml file generated for egghead-course-discord-bot on 2022-09-30T17:55:29-07:00
+# fly.toml file generated for egghead-course-discord-bot on 2022-10-02T16:45:31-07:00
 
 app = "egghead-course-discord-bot"
 kill_signal = "SIGINT"

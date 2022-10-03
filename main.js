@@ -58,6 +58,10 @@ client.on('interactionCreate', async (interaction) => {
 				{
 					name: 'Amount of people wanted',
 					value: `${numberOfPeople}`
+				},
+				{
+					name: 'Link on Wikipedia',
+					value: `https://en.wikipedia.org/wiki/${book}`
 				}
 			]
 		}
@@ -123,7 +127,6 @@ client.on('interactionCreate', async (interaction) => {
 
 		if (followupMessage === 'yes') {
 			fetchedChannel.delete('Book Club Finished')
-			fetchedRole.delete('Book Club Finished')
 		} else {
 			return
 		}

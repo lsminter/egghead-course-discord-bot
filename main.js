@@ -51,6 +51,9 @@ client.on('interactionCreate', async (interaction) => {
 					.setEmoji('👍')
 			);
 
+		const bookTitle = userBookReply.first().content
+		const wikiLink = bookTitle.replace(/\s+/g, '_');
+
 		const embedBookClubMessage = {
 			title: book,
 			description: `${author} is going to run a book club on the book ${book}.`,
@@ -61,7 +64,7 @@ client.on('interactionCreate', async (interaction) => {
 				},
 				{
 					name: 'Link on Wikipedia',
-					value: `https://en.wikipedia.org/wiki/${userBookReply}`
+					value: `https://en.wikipedia.org/wiki/${wikiLink}`
 				}
 			]
 		}

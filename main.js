@@ -61,7 +61,7 @@ client.on('interactionCreate', async (interaction) => {
 				},
 				{
 					name: 'Link on Wikipedia',
-					value: `https://en.wikipedia.org/wiki/${book}`
+					value: `https://en.wikipedia.org/wiki/${userBookReply}`
 				}
 			]
 		}

@@ -6,3 +6,4 @@
 - Respond to chat commands and Interact with external API's
 - Accept user input from command 
 - Host your bot# egghead-course-discord-bot
+# event-bot-course

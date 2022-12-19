@@ -19,6 +19,20 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
+client.on('messageCreate', async(message) => {
+	const prefix = "!"
+  if (message.author.bot) return;
+  // if (!message.content.startsWith(prefix)) return;
+  
+  const commandBody = message.content.slice(prefix.length);
+  const args = commandBody.split(' ');
+  const command = args.shift().toLowerCase();
+
+	if(command === 'hello') {
+		await message.reply({content: 'world'})
+	}
+})
+
 client.on('interactionCreate', async (interaction) => {
 	if (!interaction.isChatInputCommand()) return;
 
@@ -71,6 +85,8 @@ client.on('interactionCreate', async (interaction) => {
 			]
 		}
 
+		//add more buttons for submission time
+
 		const botEmbedMessage = await interaction.followUp({ embeds: [embedBookClubMessage], components: [customButton]})
 
 		interaction.guild.roles.create({ 
@@ -94,6 +110,8 @@ client.on('interactionCreate', async (interaction) => {
 		const filter = i => i.customId === 'primary'
 
 		const collector = interaction.channel.createMessageComponentCollector({ filter, max: numberOfPeople, time: 20000});
+
+		// don't allow user to click button twice
 
 		collector.on("collect", i => {
 			const bookClubRole = interaction.guild.roles.cache.find(r => r.name === book)
